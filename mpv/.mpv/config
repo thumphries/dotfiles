@@ -1,0 +1,13 @@
+cache=8192
+cache-min=10
+msgcolor=yes
+volume=100
+
+embeddedfonts=yes
+
+osc=no
+
+slang=eng,en,it
+alang=jp,jpn,en,eng,it,ita
+
+vo=opengl-hq
