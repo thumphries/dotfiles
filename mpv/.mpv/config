@@ -11,3 +11,5 @@ slang=eng,en,it
 alang=jp,jpn,en,eng,it,ita
 
 vo=opengl-hq
+
+ontop=yes
