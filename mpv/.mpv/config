@@ -10,6 +10,6 @@ osc=no
 slang=eng,en,it
 alang=jp,jpn,en,eng,it,ita
 
-vo=opengl-hq
+#vo=opengl-hq
 
 ontop=yes
