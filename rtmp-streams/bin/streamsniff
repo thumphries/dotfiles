@@ -1,0 +1,5 @@
+#!/bin/sh
+# Silly script to sniff out arguments for RTMPdump
+# Needs root because, you know, ngrep
+if [ -z $1 ]; then echo "Usage: $0 <iface>"; exit 1; fi
+sudo ngrep -d $1 -W byline | grep -Pio "(swfurl\.{2}.*?\.{2})|(\.{2}play.*?\w.*?\.{3})|(tcUrl.*?rtmp://.*?\.{2})|(pageUrl\.{3}.*?\.{2})"'
