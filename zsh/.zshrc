@@ -127,6 +127,7 @@ RPS1='$(git_prompt_string)'
 
 # PATH
 export PATH="$HOME/.bin"
+export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:$HOME/.cabal/bin"
 export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 export PATH="$PATH:/usr/local/rbin"
