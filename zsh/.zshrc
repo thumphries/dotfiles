@@ -133,6 +133,7 @@ export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 export PATH="$PATH:/usr/local/rbin"
 export PATH="$PATH:/opt/X11/bin:/opt/local/bin"
 export PATH="$PATH:/usr/texbin"
+export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 export MUSIC_DIR="/Users/tim/Music/"
 alias work="tmux attach -t prog || tmux"
@@ -142,3 +143,4 @@ alias ghc="ghc -o a.out"
 export USERWM="/usr/local/bin/dwm"
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 [[ -s $HOME/.pythonz/etc/bashrc ]] && source $HOME/.pythonz/etc/bashrc
+
