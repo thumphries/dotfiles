@@ -1,2 +1,6 @@
 #!/bin/sh
+echo "Enabling SOCKS proxy for wireless interface..."
+sudo networksetup -setsocksfirewallproxystate wi-fi on
 ssh -D 8080 -C -N $1
+sudo networksetup -setsocksfirewallproxystate wi-fi off
+echo "Disabling SOCKS proxy for wireless interface"
