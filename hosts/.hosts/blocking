@@ -124,3 +124,8 @@
 ::	www.platform.twitter.com
 0.0.0.0	www.userstream.twitter.com
 ::	www.userstream.twitter.com
+
+0.0.0.0 theverge.com
+::      theverge.com
+0.0.0.0 www.theverge.com
+::      theverge.com
