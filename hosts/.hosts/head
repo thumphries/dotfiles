@@ -16,4 +16,16 @@ fe80::1%lo0 localhost
 205.185.117.111 pear
 209.141.58.69 ham
 
+0.0.0.0	www.news.ycombinator.com
+::	www.news.ycombinator.com
+
+0.0.0.0	www.hn.premii.com
+::	www.hn.premii.com
+
+0.0.0.0	www.news.ycombinator.com
+::	www.news.ycombinator.com
+
+0.0.0.0	www.hn.premii.com
+::	www.hn.premii.com
+
 

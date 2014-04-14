@@ -84,12 +84,12 @@
 ::	smh.com.au
 0.0.0.0	reddit.com
 ::	reddit.com
-0.0.0.0	news.ycombinator.com
-::	news.ycombinator.com
+#0.0.0.0	news.ycombinator.com
+#::	news.ycombinator.com
 0.0.0.0	facebook.com
 ::	facebook.com
-0.0.0.0	hn.premii.com
-::	hn.premii.com
+#0.0.0.0	hn.premii.com
+#::	hn.premii.com
 0.0.0.0	4chan.org
 ::	4chan.org
 0.0.0.0	platform.twitter.com
@@ -112,12 +112,12 @@
 ::	www.reddit.com
 0.0.0.0	www.smh.com.au
 ::	www.smh.com.au
-0.0.0.0	www.news.ycombinator.com
-::	www.news.ycombinator.com
+#0.0.0.0	www.news.ycombinator.com
+#::	www.news.ycombinator.com
 0.0.0.0	www.facebook.com
 ::	www.facebook.com
-0.0.0.0	www.hn.premii.com
-::	www.hn.premii.com
+#0.0.0.0	www.hn.premii.com
+#::	www.hn.premii.com
 0.0.0.0	www.4chan.org
 ::	www.4chan.org
 0.0.0.0	www.platform.twitter.com
@@ -129,3 +129,8 @@
 ::      theverge.com
 0.0.0.0 www.theverge.com
 ::      theverge.com
+
+0.0.0.0 macrumors.com
+::      macrumors.com
+0.0.0.0 www.macrumors.com
+::      macrumors.com
