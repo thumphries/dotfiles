@@ -25,14 +25,26 @@ key[PageDown]=${terminfo[knp]}
 [[ -n "${key[Right]}"   ]]  && bindkey  "${key[Right]}"   forward-char
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
-function zle-line-init () {
-    echoti smkx
-}
-function zle-line-finish () {
-    echoti rmkx
-}
-zle -N zle-line-init
-zle -N zle-line-finish
+
+if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
+    function zle-line-init () {
+        printf '%s' ${terminfo[smkx]}
+    }
+    function zle-line-finish () {
+        printf '%s' ${terminfo[rmkx]}
+    }
+    zle -N zle-line-init
+    zle -N zle-line-finish
+fi
+
+#function zle-line-init () {
+#    echoti smkx
+#}
+#function zle-line-finish () {
+#    echoti rmkx
+#}
+#zle -N zle-line-init
+#zle -N zle-line-finish
 
 autoload -U promptinit
 autoload -U colors
@@ -136,11 +148,17 @@ export PATH="$PATH:/usr/texbin"
 export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 export MUSIC_DIR="/Users/tim/Music/"
+export EDITOR="/usr/local/bin/emacsclient -t"
+
 alias work="tmux attach -t prog || tmux"
 
-alias ghc="ghc -o a.out"
+alias vim="/usr/local/bin/emacsclient -t"
+#alias ghc="ghc -o a.out"
+alias fuck='sudo $(history | tail -1)'
+
 
 export USERWM="/usr/local/bin/dwm"
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 [[ -s $HOME/.pythonz/etc/bashrc ]] && source $HOME/.pythonz/etc/bashrc
 
+export CLASSPATH=$CLASSPATH:$HOME/.config/junit/junit.jar

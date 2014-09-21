@@ -9,12 +9,15 @@
 ::1             localhost 
 fe80::1%lo0 localhost
 
-# servers
-220.245.93.106 minah
-192.168.1.123 sawako
-69.85.92.50 cake
-205.185.117.111 pear
-209.141.58.69 ham
+# No more
+0.0.0.0 www.smh.com.au
+::      www.smh.com.au
+0.0.0.0 smh.com.au
+::      smh.com.au
+0.0.0.0 theage.com.au
+::      theage.com.au
+0.0.0.0 www.theage.com.au
+::      www.theage.com.au
 
 0.0.0.0	www.news.ycombinator.com
 ::	www.news.ycombinator.com
@@ -22,10 +25,12 @@ fe80::1%lo0 localhost
 0.0.0.0	www.hn.premii.com
 ::	www.hn.premii.com
 
-0.0.0.0	www.news.ycombinator.com
-::	www.news.ycombinator.com
+0.0.0.0	news.ycombinator.com
+::	news.ycombinator.com
 
-0.0.0.0	www.hn.premii.com
-::	www.hn.premii.com
+0.0.0.0	hn.premii.com
+::	hn.premii.com
 
-
+# copy-paste assholes
+0.0.0.0 tcr.tynt.com
+::      tcr.tynt.com
