@@ -134,3 +134,9 @@
 (add-to-list 'load-path "/Users/tim/.emacs.d/shm")
 (require 'shm)
 (add-hook 'haskell-mode-hook 'structured-haskell-mode)
+
+;; recentf for recent file list
+(require 'recentf)
+(recentf-mode 1)
+(setq recentf-max-menu-items 25)
+(global-set-key "\C-x\ \C-r" 'recentf-open-files)
