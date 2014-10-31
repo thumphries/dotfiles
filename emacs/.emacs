@@ -12,8 +12,7 @@
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")))
-
+                         ("melpa" . "http://melpa-stable.milkbox.net/packages/")))
 (package-initialize)
 
 ;; smooth-scroll is clunky and doesn't behave like ordinary OS X scrolling
@@ -130,6 +129,13 @@
 ;; Enable Agda-style unicode input for Org
 (add-hook 'org-mode-hook (lambda () (set-input-method "TeX")))
 
+;; ghc-mod
+(autoload 'ghc-init "ghc" nil t)
+(autoload 'ghc-debug "ghc" nil t)
+(add-hook 'haskell-mode-hook (lambda () (ghc-init)))
+;; company-ghc
+(add-to-list 'company-backends 'company-ghc)
+
 ;; Structured Haskell Mode
 (add-to-list 'load-path "/Users/tim/.emacs.d/shm")
 (require 'shm)
@@ -140,3 +146,11 @@
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
+
+;; popwin
+(require 'popwin)
+(popwin-mode 1)
+
+;; Save backups elsewhere
+(setq backup-directory-alist `(("." . "~/.saves")))
+
