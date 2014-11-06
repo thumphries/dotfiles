@@ -16,21 +16,80 @@
 ##
 0.0.0.0 news.com.au
 0.0.0.0 www.news.com.au
+##
+##
+##
+##
+##0.0.0.0 zerohedge.com
+##0.0.0.0 www.zerohedge.com
+##0.0.0.0 nknews.org
+##0.0.0.0 www.nknews.org
+##0.0.0.0 dailynk.com
+##0.0.0.0 www.dailynk.com
+##0.0.0.0 tumblr.com
+##0.0.0.0 www.tumblr.com
+##0.0.0.0 pinterest.com
+##0.0.0.0 www.pinterest.com
+##0.0.0.0 sankakucomplex.com
+##0.0.0.0 www.sankakucomplex.com
+##0.0.0.0 imdb.com
+##0.0.0.0 www.imdb.com
+##
+##
+##0.0.0.0 slashdot.org
+##0.0.0.0 www.slashdot.org
+##
+##
+##0.0.0.0 irc.rizon.net
+##0.0.0.0 www.irc.rizon.net
+##0.0.0.0 chanstat.net
+##0.0.0.0 www.chanstat.net
+##
+##
+##0.0.0.0 mashable.com
+##0.0.0.0 www.mashable.com
+##0.0.0.0 gawker.com
+##0.0.0.0 www.gawker.com
+##
+##
+0.0.0.0 7chan.org
+0.0.0.0 www.7chan.org
+0.0.0.0 420chan.org
+0.0.0.0 www.420chan.org
+0.0.0.0 2ch.org
+0.0.0.0 www.2ch.org
+##
+##
+##0.0.0.0 snopes.com
+##0.0.0.0 www.snopes.com
+##
+##
+##0.0.0.0 foodbeast.com
+##0.0.0.0 www.foodbeast.com
+##
 
-0.0.0.0 slashdot.org
-0.0.0.0 www.slashdot.org
-
-0.0.0.0 mashable.com
-0.0.0.0 www.mashable.com
-0.0.0.0 gawker.com
-0.0.0.0 www.gawker.com
-
-0.0.0.0 snopes.com
-0.0.0.0 www.snopes.com
-
-0.0.0.0 foodbeast.com
-0.0.0.0 www.foodbeast.com
-
+0.0.0.0	*.4chan.org
+::	*.4chan.org
+0.0.0.0	td.twitter.com
+::	td.twitter.com
+0.0.0.0	tweetdeck.com
+::	tweetdeck.com
+0.0.0.0	smh.com.au
+::	smh.com.au
+0.0.0.0	api.twitter.com
+::	api.twitter.com
+0.0.0.0	twitter.com
+::	twitter.com
+0.0.0.0	smh.com.au
+::	smh.com.au
+0.0.0.0	reddit.com
+::	reddit.com
+0.0.0.0	news.ycombinator.com
+::	news.ycombinator.com
+0.0.0.0	facebook.com
+::	facebook.com
+0.0.0.0	hn.premii.com
+::	hn.premii.com
 0.0.0.0	4chan.org
 ::	4chan.org
 0.0.0.0	platform.twitter.com
@@ -51,8 +110,20 @@
 ::	www.smh.com.au
 0.0.0.0	www.reddit.com
 ::	www.reddit.com
+0.0.0.0	www.smh.com.au
+::	www.smh.com.au
+0.0.0.0	www.news.ycombinator.com
+::	www.news.ycombinator.com
 0.0.0.0	www.facebook.com
 ::	www.facebook.com
+0.0.0.0	www.hn.premii.com
+::	www.hn.premii.com
+0.0.0.0	www.4chan.org
+::	www.4chan.org
+0.0.0.0	www.platform.twitter.com
+::	www.platform.twitter.com
+0.0.0.0	www.userstream.twitter.com
+::	www.userstream.twitter.com
 
 0.0.0.0 theverge.com
 ::      theverge.com
@@ -76,10 +147,6 @@
 
 0.0.0.0 theguardian.com
 ::      theguardian.com
-0.0.0.0 www.theguardian.com
-::      www.theguardian.com
 
 0.0.0.0 guardian.co.uk
 ::      guardian.co.uk
-0.0.0.0 www.guardian.co.uk
-::      www.guardian.co.uk
