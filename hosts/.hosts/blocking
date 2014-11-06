@@ -125,6 +125,16 @@
 0.0.0.0	www.userstream.twitter.com
 ::	www.userstream.twitter.com
 
+
+0.0.0.0 api.tweetdeck.com
+::      api.tweetdeck.com
+0.0.0.0 www.api.tweetdeck.com
+::      www.api.tweetdeck.com
+0.0.0.0 tweetdeck.twitter.com
+::      tweetdeck.twitter.com
+0.0.0.0 www.tweetdeck.twitter.com
+::      www.tweetdeck.twitter.com
+
 0.0.0.0 theverge.com
 ::      theverge.com
 0.0.0.0 www.theverge.com
