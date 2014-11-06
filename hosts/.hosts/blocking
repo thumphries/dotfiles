@@ -147,6 +147,10 @@
 
 0.0.0.0 theguardian.com
 ::      theguardian.com
+0.0.0.0 www.theguardian.com
+::      www.theguardian.com
 
 0.0.0.0 guardian.co.uk
 ::      guardian.co.uk
+0.0.0.0 www.guardian.co.uk
+::      www.guardian.co.uk
