@@ -1,5 +1,6 @@
 # Run as root
-cat /Users/tim/.hosts/head > /tmp/block &&
-cat /Users/tim/.hosts/blocking >> /tmp/block &&
+cat $HOME/.hosts/head > /tmp/block &&
+cat $HOME/.hosts/blocking >> /tmp/block &&
 cp /etc/hosts /etc/hosts.orig &&
-mv /tmp/block /etc/hosts
+mv /tmp/block /etc/hosts &&
+osascript -e "display notification \"Blocking activated.\" with title \"Site blocking\""

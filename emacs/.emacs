@@ -133,13 +133,17 @@
 (autoload 'ghc-init "ghc" nil t)
 (autoload 'ghc-debug "ghc" nil t)
 (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
+
+;; company-mode
+(add-hook 'after-init-hook 'global-company-mode)
 ;; company-ghc
-(add-to-list 'company-backends 'company-ghc)
+(add-hook 'company-mode-hook (lambda () (add-to-list 'company-backends 'company-ghc)))
+(setq company-idle-delay 0)
 
 ;; Structured Haskell Mode
-(add-to-list 'load-path "/Users/tim/.emacs.d/shm")
-(require 'shm)
-(add-hook 'haskell-mode-hook 'structured-haskell-mode)
+;; (add-to-list 'load-path "/Users/tim/.emacs.d/shm")
+;; (require 'shm)
+;; (add-hook 'haskell-mode-hook 'structured-haskell-mode)
 
 ;; recentf for recent file list
 (require 'recentf)

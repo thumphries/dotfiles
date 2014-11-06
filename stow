@@ -1,2 +1,3 @@
 #!/bin/sh
+find . -iname \.DS_Store | xargs rm
 stow --target=$HOME $1

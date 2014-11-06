@@ -1,2 +1,3 @@
 # run as root
-cp /Users/tim/.hosts/head /etc/hosts
+cp $HOME/.hosts/head /etc/hosts &&
+osascript -e "display notification \"Blocking deactivated.\" with title \"Site blocking\""
