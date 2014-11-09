@@ -1,0 +1,5 @@
+#!/bin/sh
+if [ -z "$1" ]
+then echo "Usage: $0 filename"
+else fswatch-run "$1" "pdflatex $1"
+fi
