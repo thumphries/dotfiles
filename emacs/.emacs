@@ -132,14 +132,14 @@
 ;; ghc-mod
 (autoload 'ghc-init "ghc" nil t)
 (autoload 'ghc-debug "ghc" nil t)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
 ;; company-mode
 (add-hook 'after-init-hook 'global-company-mode)
 ;; company-ghc
 (add-hook 'company-mode-hook (lambda () (add-to-list 'company-backends 'company-ghc)))
-(setq company-idle-delay 0)
+(setq company-idle-delay 2)
 
 ;; Structured Haskell Mode
 ;; (add-to-list 'load-path "/Users/tim/.emacs.d/shm")
@@ -159,3 +159,21 @@
 ;; Save backups elsewhere
 (setq backup-directory-alist `(("." . "~/.saves")))
 
+;; elm mode
+(add-to-list 'load-path "~/.emacs.d/elm-mode")
+(require 'elm-mode)
+
+;; magic numbers ahoy - frame size dependent on display resolution
+;; subtract a bit for OS X menubar
+(defun set-frame-size-according-to-resolution ()
+  (interactive)
+  (if (display-graphic-p)
+  (progn
+    (let ((h (/ (- (x-display-pixel-height) 50) (frame-char-height)))
+	  (w (if (> (x-display-pixel-width) 1440) 120 80)))
+	     (set-frame-size (selected-frame) w h)))))
+
+(set-frame-size-according-to-resolution)
+
+(require 'helm-config)
+;;(helm-autoresize-mode 1)
