@@ -74,15 +74,6 @@
 ;; Better cursor type
 (setq cursor-type 'bar)
 
-;; Different cursor styles when in insert mode
-;(defun my-update-cursor ()
-;  (setq cursor-type (if (or god-local-mode buffer-read-only)
-;                        'box
-;                      'bar)))
-
-;(add-hook 'god-mode-enabled-hook 'my-update-cursor)
-;(add-hook 'god-mode-disabled-hook 'my-update-cursor)
-
 ;; This auto-reloads modified files.
 (global-auto-revert-mode t)
 
@@ -117,6 +108,7 @@
 (set-face-attribute 'default nil :height 120)
 ;;(print (font-family-list))
 (set-frame-font "Terminus" nil t)
+;(set-frame-font "PragmataPro" nil t)
 (setq-default line-spacing 0.1)
 
 (setq mouse-autoselect-window t)
@@ -175,5 +167,47 @@
 
 (set-frame-size-according-to-resolution)
 
+(show-paren-mode 1)
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+
+;;;; Ignored extensions
+(add-to-list 'completion-ignored-extensions ".hi")
+(add-to-list 'completion-ignored-extensions ".o")
+(add-hook 'ido-setup-hook (setq ido-ignore-extensions t))
+(add-hook 'ido-setup-hook (lambda ()
+			   (add-to-list 'ido-ignore-files "\\.hi")
+                           (add-to-list 'ido-ignore-files "\\.o")))
+
+
+
+;;; Helm
 (require 'helm-config)
 ;;(helm-autoresize-mode 1)
+
+(add-hook 'helm-mode-hook
+          (lambda ()
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; use TAB for action
+(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
+(define-key helm-map (kbd "C-z") 'helm-select-action) ; list actions
+(setq
+ helm-candidate-number-limit 25
+ helm-quick-update t
+ helm-M-x-requires-pattern 3 ; Require at least one character
+ helm-ff-file-name-history-use-recentf t
+ helm-ff-skip-boring-files t
+ ; helm-idle-delay 0.0
+ ; helm-input-idle-delay 0.01
+
+ ;; Use Spotlight on OS X to find files
+ helm-locate-command
+ "mdfind -onlyin $HOME -name %s %s | grep -E -v '/dist/|/Caches/'"
+ helm-mini-default-sources '(helm-source-buffers-list
+                             helm-source-recentf
+                             helm-source-buffer-not-found
+                             helm-source-locate))))
+
+(helm-mode t)
+
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-c h") 'helm-mini)
+
