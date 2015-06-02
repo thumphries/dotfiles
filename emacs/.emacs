@@ -39,10 +39,6 @@
                                       term-mode
                                       org-mode
                                       erc-mode
-				      mu4e-mode
-				      mu4e-headers-mode
-				      mu4e-main-mode
-				      mu4e-view-mode
 				      calendar
 				      calendar-mode))
 
@@ -56,6 +52,9 @@
 (global-linum-mode 1)
 (setq linum-format "%4d ") ; Default formatting has no spacing
 
+;; Disable the ridiculous and frustrating electric-indent
+(electric-indent-mode 0)
+
 ;; Show trailing whitespace in all prog-modes
 (add-hook 'prog-mode-hook (lambda () (setq show-trailing-whitespace t)))
 
@@ -64,6 +63,8 @@
 (setq cua-auto-tabify-rectangles nil) ;; Don't tabify after rectangle commands
 (transient-mark-mode 1) ;; No region when it is not highlighted
 (setq cua-keep-region-after-copy t) ;; Standard Windows behaviour
+(global-set-key (kbd "C-x C-v") 'cua-set-rectangle-mark)
+
 
 ;; Color theming and the like
 (require 'color-theme)
@@ -112,7 +113,7 @@
  '(erc-modules
    (quote
     (autojoin button completion fill keep-place list match menu move-to-prompt netsplit networks noncommands notifications readonly ring scrolltobottom stamp track))))
- 
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -130,7 +131,175 @@
 (setq mouse-autoselect-window t)
 ;(setq focus-follows-mouse nil)
 
+
+(require 'org)
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+
+; AutoRefill mode to enforce paragraphs (defun toggle-autorefill
+(add-hook 'org-mode-hook (lambda () (auto-fill-mode 1)))
+;; Enable Agda-style unicode input for Org
+(add-hook 'org-mode-hook (lambda () (set-input-method "TeX")))
+
+;; Fine-grained TODO logging
+(setq org-log-done t)
+(setq org-log-into-drawer t)
+
+;; Keep DONE items out of agenda view
+(setq org-agenda-skip-deadline-if-done t)
+(setq org-agenda-skip-scheduled-if-done t)
+
+;; Add INBOX and other contexts to agenda pop-up
+(setq org-agenda-custom-commands
+      '(("i" "INBOX" tags "-{.}/!" nil)))
+
+;; Global keyword set
+(setq org-todo-keywords '((type "TODO(@)" "|" "DONE(!)" "NOPE(@)")))
+
+;; Global tag set
+;; XXX This should probably be stored elsewhere
+(setq org-tag-alist
+      ;; Contexts
+      '((:startgroup . nil)
+	  ("@online" . ?o)
+	  ("@read" . ?r)
+	  ("@game" . ?g)
+	  ("@homework" . ?h)
+	  ("@write" . ?w)
+          ("@meta" . ?m)
+	(:endgroup . nil)
+        ;; Projects
+        ("family")
+        ("fitness")
+        ("social")
+	("logistics" . ?l)
+	("photography")
+        ("music")
+        ("movies")
+	("career")
+        ("thesis")
+	("blog")
+        ("cooking")
+        ;; Place tags
+	("Sydney")
+        ("Portland")
+	("LA")
+        ("SF")))
+
+;; org-journal
 (require 'org-journal)
+(setq org-journal-dir "~/Documents/journal/")
+;; Give all journal files a .org suffix, triggering org-mode
+(setq org-journal-file-format "%Y%m%d.org")
+;; Match date.org files for the calendar view
+(setq org-journal-file-pattern
+      "^\\(?1:[0-9]\\{4\\}\\)\\(?2:[0-9][0-9]\\)\\(?3:[0-9][0-9]\\).org$")
+
+;; ghc-mod
+(autoload 'ghc-init "ghc" nil t)
+(autoload 'ghc-debug "ghc" nil t)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
+(add-hook 'haskell-mode-hook (lambda () (ghc-init)))
+
+;; company-mode
+(add-hook 'after-init-hook 'global-company-mode)
+;; company-ghc
+(add-hook 'company-mode-hook (lambda () (add-to-list 'company-backends 'company-ghc)))
+(setq company-idle-delay 2)
+
+;; Structured Haskell Mode
+;; (add-to-list 'load-path "/Users/tim/.emacs.d/shm")
+;; (require 'shm)
+;; (add-hook 'haskell-mode-hook 'structured-haskell-mode)
+
+;; recentf for recent file list
+(require 'recentf)
+(recentf-mode 1)
+(setq recentf-max-menu-items 25)
+(global-set-key "\C-x\ \C-r" 'recentf-open-files)
+
+;; popwin
+(require 'popwin)
+(popwin-mode 1)
+
+;; Save backups elsewhere
+(setq backup-directory-alist `(("." . "~/.saves")))
+
+;; elm mode
+(add-to-list 'load-path "~/.emacs.d/elm-mode")
+(require 'elm-mode)
+
+;; magic numbers ahoy - frame size dependent on display resolution
+;; subtract a bit for OS X menubar
+(defun set-frame-size-according-to-resolution ()
+  (interactive)
+  (if (display-graphic-p)
+  (progn
+    (let ((h (/ (- (x-display-pixel-height) 50) (frame-char-height)))
+	  (w (if (> (x-display-pixel-width) 1440) 120 80)))
+	     (set-frame-size (selected-frame) w h)))))
+
+(set-frame-size-according-to-resolution)
+
+(show-paren-mode 1)
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+
+;;;; Ignored extensions
+(add-to-list 'completion-ignored-extensions ".hi")
+(add-to-list 'completion-ignored-extensions ".o")
+(add-hook 'ido-setup-hook (setq ido-ignore-extensions t))
+(add-hook 'ido-setup-hook (lambda ()
+			   (add-to-list 'ido-ignore-files "\\.hi")
+                           (add-to-list 'ido-ignore-files "\\.o")))
+
+
+
+;;; Helm
+(require 'helm-config)
+;;(helm-autoresize-mode 1)
+
+(add-hook 'helm-mode-hook
+          (lambda ()
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; use TAB for action
+(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
+(define-key helm-map (kbd "C-z") 'helm-select-action) ; list actions
+(setq
+ helm-candidate-number-limit 25
+ helm-quick-update t
+ helm-M-x-requires-pattern 3 ; Require at least one character
+ helm-ff-file-name-history-use-recentf t
+ helm-ff-skip-boring-files t
+ ; helm-idle-delay 0.0
+ ; helm-input-idle-delay 0.01
+
+ ;; Use Spotlight on OS X to find files
+ helm-locate-command
+ "mdfind -onlyin $HOME -name %s %s | grep -E -v '/dist/|/Caches/'"
+ helm-mini-default-sources '(helm-source-buffers-list
+                             helm-source-recentf
+                             helm-source-buffer-not-found
+                             helm-source-locate))))
+
+(helm-mode t)
+
+;; helm-swoop
+(add-to-list 'load-path "~/.emacs.d/helm-swoop")
+(require 'helm-swoop)
+
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-c h") 'helm-mini)
+(global-set-key (kbd "C-s") 'helm-swoop)
+
+(setq tramp-default-method "ssh")
+
+(require 'org-journal)
+;; Force a .org suffix on written journal files
+(setq org-journal-file-format "%Y%m%d.org")
+;; Make sure those files are visible in calendar
+(setq org-journal-file-pattern
+      (org-journal-format-string->regex org-journal-file-format))
+;; Make sure org-agenda can find them
+(setq org-agenda-files (list org-journal-dir))
 
 ;; AutoRefill mode to enforce paragraphs (defun toggle-autorefill
 (add-hook 'org-mode-hook (lambda () (auto-fill-mode 1)))
@@ -258,3 +427,7 @@
         (browse-url (concat "file://" tmpfile))))
     (add-to-list 'mu4e-view-actions
       '("View in browser" . mu4e-msgv-action-view-in-browser) t)
+
+
+;; Tramp
+(setq tramp-default-method "ssh")
