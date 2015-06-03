@@ -151,10 +151,11 @@
 
 ;; Add INBOX and other contexts to agenda pop-up
 (setq org-agenda-custom-commands
-      '(("i" "INBOX" tags "-{.}/!" nil)))
+      '(("i" "INBOX" tags "-{^@}/!" nil)))
 
 ;; Global keyword set
-(setq org-todo-keywords '((type "TODO(@)" "|" "DONE(!)" "NOPE(@)")))
+(setq org-todo-keywords
+      '((type "TODO(!)" "|" "DONE(!)" "WONTDO(@)" "IMPOSSIBLE(@)")))
 
 ;; Global tag set
 ;; XXX This should probably be stored elsewhere
@@ -180,6 +181,7 @@
         ("thesis")
 	("blog")
         ("cooking")
+	("flights")
         ;; Place tags
 	("Sydney")
         ("Portland")
@@ -431,3 +433,10 @@
 
 ;; Tramp
 (setq tramp-default-method "ssh")
+
+;; Force file associations for markdown-mode
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+;; shut up magit
+(setq magit-last-seen-setup-instructions "1.4.0")
