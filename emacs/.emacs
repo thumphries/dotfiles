@@ -40,7 +40,8 @@
                                       org-mode
                                       erc-mode
 				      calendar
-				      calendar-mode))
+				      calendar-mode
+				      magit-mode))
 
 (defadvice linum-on (around linum-on-inhibit-for-modes)
   "Stop the load of linum-mode for some major modes."
