@@ -304,6 +304,10 @@
 ;; Make sure org-agenda can find them
 (setq org-agenda-files (list org-journal-dir))
 
+;; Keep future-scheduled items out of the todo list
+(setq org-agenda-todo-ignore-scheduled 'future)
+(setq org-agenda-tags-todo-honor-ignore-options t)
+
 ;; AutoRefill mode to enforce paragraphs (defun toggle-autorefill
 (add-hook 'org-mode-hook (lambda () (auto-fill-mode 1)))
 ;; Enable Agda-style unicode input for Org
