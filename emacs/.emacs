@@ -308,6 +308,9 @@
 (setq org-agenda-todo-ignore-scheduled 'future)
 (setq org-agenda-tags-todo-honor-ignore-options t)
 
+;; Favour deadlines over scheduled times in agenda view
+(setq org-agenda-skip-scheduled-if-deadline-is-shown t)
+
 ;; AutoRefill mode to enforce paragraphs (defun toggle-autorefill
 (add-hook 'org-mode-hook (lambda () (auto-fill-mode 1)))
 ;; Enable Agda-style unicode input for Org
