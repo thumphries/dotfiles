@@ -97,6 +97,9 @@
 (load-file (let ((coding-system-for-read 'utf-8))
                 (shell-command-to-string "agda-mode locate")))
 
+;(add-hook 'agda2-mode-hook (lambda ()
+;  (setq agda2-highlight-face-groups 'default-faces)
+;))
 
 ;; Garbage from the UI configurator below
 
@@ -107,19 +110,32 @@
  ;; If there is more than one, they won't work right.
  '(agda2-include-dirs
    (quote
-    ("/Users/tim/src/agda-prelude/src" "/Users/tim/src/lib-0.7" ".")))
+    ("/Users/tim/src/agda-prelude/src" "/Users/tim/src/agda-stdlib-0.9" ".")))
  '(custom-safe-themes
    (quote
     ("eab5d2aedb86a40c370945b167efa42de00b354d9e66ebed0f11dda0588fdd14" "c1ab9d4df50c59761db835e29d38d37769d596f14868f8165cd7cf27333afad0" "e2c168d94835051b94f08c0f523798b08012c5992074799b8b5caae1b412c698" "93955537eaadd7b8c1bc1ba6b040135ff502ac03b158548907b7109dec7f8efd" "03eed17bc0e43fc1bb94587c9c89d747fa3af342276d7542e051335ea6800d7f" "751f7a6f7afe58586786c76b1d5a797be28220cd71cb3195c03bde571bd921da" "1177fe4645eb8db34ee151ce45518e47cc4595c3e72c55dc07df03ab353ad132" "d8070384376f6e6a4b672ed0f1637034490a65197ff34f92d9ee4322c421bdd6" "6d1977ebe72065bf27f34974a9e5cb5dc0a7f296804376fad412d981dee7a7e4" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "c5a044ba03d43a725bd79700087dea813abcb6beb6be08c7eb3303ed90782482" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" "756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" default)))
  '(erc-modules
    (quote
-    (autojoin button completion fill keep-place list match menu move-to-prompt netsplit networks noncommands notifications readonly ring scrolltobottom stamp track))))
+    (autojoin button completion fill keep-place list match menu move-to-prompt netsplit networks noncommands notifications readonly ring scrolltobottom stamp track)))
+ '(org-agenda-dim-blocked-tasks (quote invisible)))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(agda2-highlight-coinductive-constructor-face ((t (:foreground "gold"))))
+ '(agda2-highlight-datatype-face ((t (:foreground "light blue"))))
+ '(agda2-highlight-function-face ((t (:foreground "light blue"))))
+ '(agda2-highlight-inductive-constructor-face ((t (:foreground "light green"))))
+ '(agda2-highlight-keyword-face ((t (:foreground "orange"))))
+ '(agda2-highlight-module-face ((t (:foreground "pink"))))
+ '(agda2-highlight-number-face ((t (:foreground "pink"))))
+ '(agda2-highlight-postulate-face ((t (:foreground "light blue"))))
+ '(agda2-highlight-primitive-face ((t (:foreground "light blue"))))
+ '(agda2-highlight-primitive-type-face ((t (:foreground "light blue"))))
+ '(agda2-highlight-record-face ((t (:foreground "light blue"))))
+ '(agda2-highlight-string-face ((t (:foreground "light salmon"))))
  '(italic ((t (:slant normal)))))
 
 ;; Font stuff
@@ -149,6 +165,14 @@
 ;; Keep DONE items out of agenda view
 (setq org-agenda-skip-deadline-if-done t)
 (setq org-agenda-skip-scheduled-if-done t)
+(setq org-agenda-dim-blocked-tasks t)
+(setq org-enforce-todo-dependencies t)
+
+;; Set agenda timestamp appearance
+(setq org-agenda-deadline-leaders
+      '("Deadline:  " "DUE  %3dd: " "LATE  %2dd: "))
+(setq org-agenda-scheduled-leaders
+      '("Scheduled: " "AVAIL %2dd: "))
 
 ;; Add INBOX and other contexts to agenda pop-up
 (setq org-agenda-custom-commands
@@ -168,6 +192,7 @@
 	  ("@game" . ?g)
 	  ("@homework" . ?h)
 	  ("@write" . ?w)
+	  ("@code" . ?c)
           ("@meta" . ?m)
 	(:endgroup . nil)
         ;; Projects
@@ -191,6 +216,7 @@
 
 ;; org-journal
 (require 'org-journal)
+(setq org-dir "~/Documents/org/")
 (setq org-journal-dir "~/Documents/journal/")
 ;; Give all journal files a .org suffix, triggering org-mode
 (setq org-journal-file-format "%Y%m%d.org")
@@ -219,7 +245,7 @@
 (require 'recentf)
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
-(global-set-key "\C-x\ \C-r" 'recentf-open-files)
+;; (global-set-key "\C-x\ \C-r" 'recentf-open-files)
 
 ;; popwin
 (require 'popwin)
@@ -292,6 +318,7 @@
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-c h") 'helm-mini)
 (global-set-key (kbd "C-s") 'helm-swoop)
+(global-set-key (kbd "C-x C-r") 'helm-recentf)
 
 (setq tramp-default-method "ssh")
 
@@ -302,7 +329,7 @@
 (setq org-journal-file-pattern
       (org-journal-format-string->regex org-journal-file-format))
 ;; Make sure org-agenda can find them
-(setq org-agenda-files (list org-journal-dir))
+(setq org-agenda-files (list org-dir org-journal-dir))
 
 ;; Keep future-scheduled items out of the todo list
 (setq org-agenda-todo-ignore-scheduled 'future)
@@ -310,6 +337,10 @@
 
 ;; Favour deadlines over scheduled times in agenda view
 (setq org-agenda-skip-scheduled-if-deadline-is-shown t)
+
+;; Customise text in agenda view
+(setq org-agenda-deadline-leaders  '("Deadline:  " "DUE  %3dd: " "LATE  %2dd: "))
+(setq org-agenda-scheduled-leaders '("Scheduled: " "AVAIL %2dd: "))
 
 ;; AutoRefill mode to enforce paragraphs (defun toggle-autorefill
 (add-hook 'org-mode-hook (lambda () (auto-fill-mode 1)))

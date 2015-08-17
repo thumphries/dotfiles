@@ -164,7 +164,18 @@ export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 export CLASSPATH=$CLASSPATH:$HOME/.config/junit/junit.jar
 
 # Add GHC 7.8.3 to the PATH, via http://ghcformacosx.github.io/
-export GHC_DOT_APP="/Applications/GHC.app"
+#export GHC_DOT_APP="/Applications/GHC.app"
+# if [ -d "$GHC_DOT_APP" ]; then
+#    export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
+#fi
+
+# . /Users/tim/.nix-profile/etc/profile.d/nix.sh
+# export NIX_PATH=nixpkgs=$HOME/src/nixpkgs
+
+
+# Add GHC 7.10.1 to the PATH, via https://ghcformacosx.github.io/
+export GHC_DOT_APP="/Users/tim/Downloads/ghc-7.10.1.app"
 if [ -d "$GHC_DOT_APP" ]; then
-    export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
+  export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
 fi
+
