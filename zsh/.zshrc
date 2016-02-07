@@ -146,8 +146,10 @@ export PATH="$PATH:/usr/local/rbin"
 export PATH="$PATH:/opt/X11/bin:/opt/local/bin"
 export PATH="$PATH:/usr/texbin"
 export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+export PATH=$HOME/bin/ghc-7.10.2/bin:$PATH
 
-export MUSIC_DIR="/Users/tim/Music/"
+
+export MUSIC_DIR="/Volumes/Music/"
 export EDITOR="/usr/local/bin/emacsclient -t"
 
 alias work="tmux attach -t prog || tmux"

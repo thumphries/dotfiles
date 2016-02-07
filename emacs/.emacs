@@ -71,6 +71,13 @@
 (require 'color-theme)
 (color-theme-initialize)
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+
+(require 'theme-changer)
+(setq calendar-location-name "Sydney, Australia")
+(setq calendar-latitude -34)
+(setq calendar-longitude 151)
+(setq theme-changer-mode "color-theme")
+;; (change-theme nil 'color-theme-assemblage)
 (load-theme 'assemblage t)
 
 

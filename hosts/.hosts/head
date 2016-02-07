@@ -9,27 +9,6 @@
 ::1             localhost 
 fe80::1%lo0 localhost
 
-# No more
-0.0.0.0 www.smh.com.au
-::      www.smh.com.au
-0.0.0.0 smh.com.au
-::      smh.com.au
-0.0.0.0 theage.com.au
-::      theage.com.au
-0.0.0.0 www.theage.com.au
-::      www.theage.com.au
-
-0.0.0.0	www.news.ycombinator.com
-::	www.news.ycombinator.com
-
-0.0.0.0	www.hn.premii.com
-::	www.hn.premii.com
-
-0.0.0.0	news.ycombinator.com
-::	news.ycombinator.com
-
-0.0.0.0	hn.premii.com
-::	hn.premii.com
 
 # copy-paste assholes
 0.0.0.0 tcr.tynt.com
