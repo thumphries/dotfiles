@@ -1,0 +1,11 @@
+
+autoload -U promptinit
+autoload -U colors
+autoload -U compinit
+colors
+promptinit
+compinit
+
+setopt prompt_subst
+
+PROMPT="[%{$fg[black]%}%n@%M:%{$fg[white]%}%~%{$reset_color%}] %# "
