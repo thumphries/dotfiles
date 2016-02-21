@@ -67,9 +67,12 @@ g() {
   ghc-switch $FIRST
 }
 
+GHC_PROMPT_PREFIX="%{$fg[green]%}[%{$reset_color%}"
+GHC_PROMPT_SUFFIX="%{$fg[green]%}]%{$reset_color%}"
+
 # Append to the prompt where helpful
 ghc_prompt_string() {
-  [ -n "$GHC_VERSION" ] && echo "[$GHC_VERSION]"
+  [ -n "$GHC_VERSION" ] && echo "$GHC_PROMPT_PREFIX%{$fg[yellow]%}$GHC_VERSION$GHC_PROMPT_SUFFIX"
 }
 
 export RPS1='$(ghc_prompt_string)'$RPS1
