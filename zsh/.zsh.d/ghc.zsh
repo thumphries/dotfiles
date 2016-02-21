@@ -23,7 +23,7 @@ ghc-switch() {
     export GHC_VERSION=$1
     ghc --version
   else
-    echo "GHC $1 isn't available"
+    echo "GHC $1 isn't available. Install it with 'ghc-install $1'."
     ghc-list-available
     return 1
   fi
@@ -39,12 +39,14 @@ ghc-install() {
   fi
 
   VERSION=$1
-  FILE=ghc-$VERSION-x86_64-apple-darwin.tar.xz
+  DIST=https://www.haskell.org/ghc/dist/
+  FILEX=ghc-$VERSION-x86_64-apple-darwin.tar.xz
+  FILEB=ghc-$VERSION-x86_64-apple-darwin.tar.bz2
   DIR=`pwd`
 
   cd /tmp \
-    && wget https://www.haskell.org/ghc/dist/$VERSION/$FILE \
-    && tar xf $FILE \
+    && (wget $DIST/$VERSION/$FILEX || wget $DIST/$VERSION/$FILEB)  \
+    && tar xf ghc-$VERSION-*.tar.* \
     && cd ghc-$VERSION \
     && ./configure --prefix=$GHCDIR/ghc-$VERSION \
     && make install \
@@ -56,6 +58,8 @@ ghc-install() {
 
 # Cycle GHC versions
 g() {
+  if [ -n "$1" ]; then ghc-switch $1; return $?; fi
+
   FIRST=
   NEXT=
   for ver in $(ghc-list-available | tail -n +2); do
