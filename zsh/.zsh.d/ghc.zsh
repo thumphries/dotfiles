@@ -4,7 +4,7 @@ GHCDIR=$HOME/bin
 ghc-list-available() {
   echo "Available versions:"
   for ver in $GHCDIR/ghc-*; do
-    echo "  ${ver##$GHCDIR/ghc-}"
+    echo "${ver##$GHCDIR/ghc-}"
   done
 }
 
@@ -17,7 +17,7 @@ ghc-switch() {
   fi
 
 
-  VER_PATH="$HOME/bin/ghc-$1"
+  VER_PATH="$GHCDIR/ghc-$1"
   if [ -d "$VER_PATH" ]; then
     export path=($VER_PATH/bin ${(@)path:#*ghc*})
     export GHC_VERSION=$1
@@ -56,14 +56,15 @@ ghc-install() {
 
 # Cycle GHC versions
 g() {
-  case $GHC_VERSION in
-    7.8.4)
-      ghc-switch 7.10.2
-      ;;
-    *)
-      ghc-switch 7.8.4
-      ;;
-  esac
+  FIRST=
+  NEXT=
+  for ver in $(ghc-list-available | tail -n +2); do
+    if [ -z "$FIRST" ]; then FIRST="$ver"; fi
+    if [ -z "$GHC_VERSION" ]; then ghc-switch $ver; return 0; fi
+    if [ -n "$NEXT" ]; then ghc-switch $ver; return 0; fi
+    if [ $ver = "$GHC_VERSION" ]; then NEXT="true"; continue; fi
+  done
+  ghc-switch $FIRST
 }
 
 # Append to the prompt where helpful
