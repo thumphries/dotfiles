@@ -1,0 +1,104 @@
+#!/usr/bin/env perl
+# generate mpd playlists using mtime attribute
+# just a find | mpc wrapper
+#
+# uses MUSIC_DIR env variable or --dir option
+# depends on mpc
+#
+# --out flag dumps to stdout instead, output is equiv to m3u format
+#
+# holy fuck i can't code today sorry
+
+use strict;
+use warnings;
+
+use Getopt::Long;
+use Date::Simple qw/date today days_in_month/;
+
+my $stdout = '';
+my $dir = $ENV{MUSIC_DIR};
+$dir = "./" unless $dir;
+GetOptions(
+    "out" => \$stdout,
+    "dir=s" => \$dir,
+);
+
+my $mode = shift;
+unless($mode) {
+    print "Usage: $0 week|month|year <errata>\n";
+    exit 1;
+}
+
+# Generic date resources
+my %months;
+my $c = 1;
+for (qw/jan feb mar apr may jun jul aug sep oct nov dec/) {
+    $months{$_} = $c++;
+}
+# Today's date resources
+my @date = split('-', today());
+
+my $findargs = '';
+if($mode eq 'week') {
+    $findargs = "-mtime -7d";
+} elsif($mode eq 'month') {
+    if(@ARGV) {
+        my $month = shift;
+        if($month =~ /^\w{3}/) {
+            $month = $months{substr $month, 0, 3};
+        } else {
+            print "FATAL: Malformed month.\n";
+            exit 1;
+        }
+        if(@ARGV) {
+            my $year = shift;
+            if ($year =~ /^\d{4}$/) {
+                my $dim = days_in_month($year, $month);
+                $findargs = "-newermt $year-$month-01 ! -newermt $year-$month-$dim";
+            } else {
+                print "FATAL: Malformed year.\n";
+                exit 1;
+            }
+        } else {
+            my ($dim, $year);
+            if($month > $date[1]) { # last year
+                $year = $date[0]-1;
+                $dim = days_in_month($year, $month);
+            } else { # this year
+                $year = $date[0];
+                $dim = days_in_month($year, $month);
+            }
+            $findargs = "-newermt $year-$month-01 ! -newermt $year-$month-$dim";
+        }
+    } else {
+        $findargs = "-mtime -31d";
+    }
+} elsif($mode eq 'year') {
+    if(@ARGV) {
+        my $year = shift;
+        if ($year =~ /^\d{4}$/) {
+            $findargs = "-newermt $year-01-01 ! -newermt $year-12-31";
+        } else {
+            print "FATAL: Malformed year.\n";
+            exit 1;
+        }
+    } else {
+        $findargs = "-mtime -365d";
+    }
+} else {
+    print "FATAL: Malformed mode.\n";
+    exit 1;
+}
+
+my $cut = length($dir)+2;
+my $cmd = 
+    "find $dir $findargs | " .
+    "cut -c$cut- | " .
+    "egrep -e '(mp3|flac)\$'"
+;
+
+if($stdout) {
+    system($cmd);
+} else {
+    system($cmd . '| tr "\n" "\0"' . "| xargs -0 mpc add");
+}
