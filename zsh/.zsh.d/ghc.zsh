@@ -80,4 +80,4 @@ ghc_prompt_string() {
 }
 
 export RPS1='$(ghc_prompt_string)'$RPS1
-export PATH="$PATH:$HOME/.cabal/bin"
+export PATH="$HOME/.cabal/bin:$PATH"
