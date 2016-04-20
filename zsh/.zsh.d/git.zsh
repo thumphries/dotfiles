@@ -1,4 +1,12 @@
 
+## Dodgy aliases
+
+# fixup commit with autostage
+alias fixup="git commit -a --fixup=HEAD^"
+
+# pull every submodule up to origin/master - not subtle
+alias bump="git submodule foreach '(git checkout master; git pull)&'"
+
 # Git rprompt
 # From http://blog.joshdick.net/2012/12/30/my_git_prompt_for_zsh.html
 # Adapted from code found at <https://gist.github.com/1712320>.
