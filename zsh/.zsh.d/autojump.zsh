@@ -1,4 +1,5 @@
 # Autojump
-if [ -f `brew --prefix`/etc/autojump ]; then
-  . `brew --prefix`/etc/autojump
+AUTOJUMP=`brew --prefix`/etc/autojump.sh
+if [ -f $AUTOJUMP ]; then
+  . $AUTOJUMP
 fi
