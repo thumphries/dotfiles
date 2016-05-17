@@ -1,0 +1,2 @@
+#!/bin/sh
+stow --target=$HOME -D $1
