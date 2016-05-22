@@ -19,9 +19,12 @@ ghc-switch() {
 
   VER_PATH="$GHCDIR/ghc-$1"
   if [ -d "$VER_PATH" ]; then
-    export path=($VER_PATH/bin ${(@)path:#*ghc*})
-    export GHC_VERSION=$1
+    if [ -z "$GHC_VERSION" ]
+      then export PATH=$VER_PATH/bin:$PATH
+      else export path=($VER_PATH/bin ${(@)path:#*ghc*})
+    fi
     ghc --version
+    export GHC_VERSION=$1
   else
     echo "GHC $1 isn't available. Install it with 'ghc-install $1'."
     ghc-list-available
