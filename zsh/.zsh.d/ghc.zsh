@@ -21,7 +21,7 @@ ghc-switch() {
   if [ -d "$VER_PATH" ]; then
     if [ -z "$GHC_VERSION" ]
       then export PATH=$VER_PATH/bin:$PATH
-      else export path=($VER_PATH/bin ${(@)path:#*ghc*})
+      else path=($VER_PATH/bin ${(@)path:#*ghc*})
     fi
     ghc --version
     export GHC_VERSION=$1
