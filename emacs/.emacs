@@ -216,6 +216,12 @@
                            (add-to-list 'ido-ignore-files "\\.o")))
 
 
+;;; projectile
+(projectile-global-mode)
+(setq projectile-enable-caching t)
+(setq projectile-completion-system 'helm)
+
+
 ;;; Helm
 (require 'helm-config)
 ;;(helm-autoresize-mode 1)
