@@ -10,6 +10,9 @@ alias bump="git submodule foreach '(git checkout master; git pull)&'"
 # match origin/master
 alias gom="git checkout master && git pull && git submodule sync && git submodule update"
 
+# tig shorthand
+alias ts="tig status"
+
 # Git rprompt
 # From http://blog.joshdick.net/2012/12/30/my_git_prompt_for_zsh.html
 # Adapted from code found at <https://gist.github.com/1712320>.
