@@ -94,7 +94,8 @@ my $cut = length($dir)+2;
 my $cmd = 
     "find $dir $findargs | " .
     "cut -c$cut- | " .
-    "egrep -e '(mp3|flac)\$'"
+    "egrep -e '(mp3|flac)\$' | " .
+    "sort"
 ;
 
 if($stdout) {
