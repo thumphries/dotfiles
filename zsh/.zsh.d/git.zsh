@@ -10,6 +10,9 @@ alias bump="git submodule foreach '(git checkout master; git pull)&'"
 # match origin/master
 alias gom="git checkout master && git pull && git submodule sync && git submodule update"
 
+# cd to root of working tree
+alias r='cd $(git rev-parse --show-toplevel)'
+
 # tig shorthand
 alias ts="tig status"
 
