@@ -1,7 +1,9 @@
 #!/usr/bin/env mafia
 {-# SUBMODULE ambiata/p@3ea83a82b058ba2e1dd216d9e7832fd49cf33dbd #-}
 {-# PACKAGE ambiata-p #-}
+{-# PACKAGE comonad #-}
 {-# PACKAGE containers #-}
+{-# PACKAGE dlist #-}
 {-# PACKAGE text #-}
 {-# LANGUAGE NoImplicitPrelude #-}
 {-# LANGUAGE OverloadedStrings #-}
@@ -9,6 +11,10 @@
 {-# OPTIONS_GHC -fno-warn-unused-imports #-}
 
 
+import           Control.Comonad (Comonad (..))
+
+import           Data.DList (DList)
+import qualified Data.DList as D
 import           Data.Map.Strict (Map)
 import qualified Data.Map.Strict as M
 import           Data.Set  (Set)
