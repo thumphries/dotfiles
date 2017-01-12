@@ -15,6 +15,7 @@ import           Control.Comonad (Comonad (..))
 
 import           Data.DList (DList)
 import qualified Data.DList as D
+import qualified Data.List as L
 import           Data.Map.Strict (Map)
 import qualified Data.Map.Strict as M
 import           Data.Set  (Set)
