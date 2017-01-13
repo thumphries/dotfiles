@@ -5,6 +5,7 @@
 {-# PACKAGE containers #-}
 {-# PACKAGE dlist #-}
 {-# PACKAGE text #-}
+{-# PACKAGE pretty-show #-}
 {-# LANGUAGE NoImplicitPrelude #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# OPTIONS_GHC -fno-warn-unrecognised-pragmas #-}
@@ -27,3 +28,5 @@ import           P
 
 import           System.IO (IO)
 import qualified System.IO as IO
+
+import           Text.Show.Pretty (pPrint, ppShow)
