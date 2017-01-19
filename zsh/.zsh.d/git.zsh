@@ -13,6 +13,12 @@ alias gom="git checkout master && git pull && git submodule sync && git submodul
 # cd to root of working tree
 alias r='cd $(git rev-parse --show-toplevel)'
 
+# prune all merged branches
+alias prune-merged-branches="git branch --merged | grep -e "topic/" | xargs git branch -d"
+
+# submodule dance
+alias gss="git submodule sync && git submodule update"
+
 # tig shorthand
 alias ts="tig status"
 
