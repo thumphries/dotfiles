@@ -1,0 +1,30 @@
+#!/usr/bin/env mafia
+{-# PACKAGE pretty-show #-}
+{-# PACKAGE hscolour #-}
+{-# LANGUAGE NoImplicitPrelude #-}
+{-# LANGUAGE OverloadedStrings #-}
+
+
+import           Language.Haskell.HsColour
+import           Language.Haskell.HsColour.Colourise
+
+import           Prelude
+
+import           System.IO
+
+import qualified Text.Show.Pretty as PP
+
+
+colorPP :: String -> String
+colorPP s =
+  maybe s (colorIt . PP.valToStr) (PP.parseValue s)
+
+colorIt :: String -> String
+colorIt =
+  hscolour TTY defaultColourPrefs False False "" False
+
+main :: IO ()
+main = do
+  hSetBuffering stdout LineBuffering
+  hSetBuffering stderr LineBuffering
+  interact colorPP
