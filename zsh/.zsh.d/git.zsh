@@ -19,6 +19,12 @@ alias prune-merged-branches="git branch --merged | grep -e "topic/" | xargs git 
 # submodule dance
 alias gss="git submodule sync && git submodule update"
 
+# safe force-push
+alias gfp='git push --force-with-lease origin "$(git rev-parse --abbrev-ref HEAD)"'
+
+# interactive rebase up to common ancestor
+alias grb='git rebase -i "$(git merge-base master HEAD)"'
+
 # tig shorthand
 alias ts="tig status"
 
