@@ -19,6 +19,9 @@ alias prune-merged-branches="git branch --merged | grep -e "topic/" | xargs git 
 # submodule dance
 alias gss="git submodule sync && git submodule update"
 
+# fetch origin
+alias gfo="git fetch origin"
+
 # safe force-push
 alias gfp='git push --force-with-lease origin "$(git rev-parse --abbrev-ref HEAD)"'
 
