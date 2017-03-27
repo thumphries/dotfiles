@@ -1,5 +1,5 @@
 
-## Dodgy aliases
+## Dodgy git aliases
 
 # fixup commit with autostage
 alias fixup="git commit -a --fixup=HEAD^"
@@ -22,11 +22,14 @@ alias gss="git submodule sync && git submodule update"
 # fetch origin
 alias gfo="git fetch origin"
 
+# fast-forward to remote HEAD
+alias gff='git merge --ff-only $(git for-each-ref --format="%(upstream:short)" $(git symbolic-ref -q HEAD))'
+
 # safe force-push
 alias gfp='git push --force-with-lease origin "$(git rev-parse --abbrev-ref HEAD)"'
 
 # interactive rebase up to common ancestor
-alias grb='git rebase -i "$(git merge-base master HEAD)"'
+alias grb='git rebase -i "$(git merge-base origin/master HEAD)"'
 
 # tig shorthand
 alias ts="tig status"
