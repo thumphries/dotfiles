@@ -10,6 +10,9 @@ alias bump="git submodule foreach '(git checkout master; git pull)&'"
 # match origin/master
 alias gom="git fetch origin && git checkout origin/master && git submodule sync && git submodule update"
 
+# rebase origin/master
+alias grom="git rebase origin/master"
+
 # cd to root of working tree
 alias r='cd $(git rev-parse --show-toplevel)'
 
