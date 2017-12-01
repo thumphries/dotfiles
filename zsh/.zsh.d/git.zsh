@@ -10,6 +10,9 @@ alias bump="git submodule foreach '(git checkout master; git pull)&'"
 # match origin/master
 alias gom="git fetch origin && git checkout origin/master && git submodule sync && git submodule update"
 
+# checkout origin/master
+alias gcom="git checkout origin/master"
+
 # rebase origin/master
 alias grom="git rebase origin/master"
 
@@ -33,6 +36,9 @@ alias gfp='git push --force-with-lease origin "$(git rev-parse --abbrev-ref HEAD
 
 # interactive rebase up to common ancestor
 alias grb='git rebase -i "$(git merge-base origin/master HEAD)"'
+
+# clean up ignored files
+alias gcx='git clean -x'
 
 # tig shorthand
 alias ts="tig status"
