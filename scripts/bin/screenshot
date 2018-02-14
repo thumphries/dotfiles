@@ -1,0 +1,3 @@
+#!/bin/sh -eu
+RECT=$(xrectsel)
+scrot -e "convert -crop ${RECT} \$f \$f"

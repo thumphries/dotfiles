@@ -55,11 +55,19 @@
 urxvt*background: #171717
 urxvt*foreground: #C0C0C0
 
-URxvt.perl-ext-common:  default,matcher
+URxvt*termName: rxvt
+
+URxvt.perl-ext-common:  default,matcher,font-size
 URxvt.urlLauncher:      /usr/local/bin/firefox
 URxvt.matcher.button:   1 
 
-urxvt*font: xft:Terminus:pixelsize=12:antialias=false
-urxvt*boldfont: xft:Terminus:pixelsize=12:antialias=false
+URxvt.keysym.C-equal:  font-size:increase
+URxvt.keysym.C-minus:  font-size:decrease
+
+urxvt*font: xft:Essential PragmataPro:pixelsize=18:antialias=True
+urxvt*boldfont: xft:Essential PragmataPro:pixelsize=18:antialias=True
 
 urxvt.scrollBar: false
+
+! Disable _actual printing_ on PrintScr
+urxvt.print-pipe: "cat > /dev/null"

@@ -14,6 +14,6 @@ REPORTTIME=10
 
 # FIX get the rest of this crap into appropriate files / get rid of em
 export MUSIC_DIR="/Volumes/Music/"
-export EDITOR="/usr/local/bin/emacsclient -t"
+export EDITOR="emacsclient -t"
 
 alias work="tmux attach -t prog || tmux"

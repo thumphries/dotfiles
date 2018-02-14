@@ -3,7 +3,7 @@
 if [ -S "${GPG_AGENT_INFO%%:*}" ]; then
   export GPG_AGENT_INFO
 else
-  eval $( gpg-agent --daemon --write-env-file ~/.gpg-agent-info )
+  eval $( gpg-agent --daemon 2> /dev/null )
 fi
 
 # need to tell it where pinentry should run
