@@ -46,6 +46,9 @@ alias ts="tig status"
 # list all branches, sorted by most recent commit
 alias gb="git for-each-ref --sort=-committerdate --format='%(committerdate:short) %(refname)' refs/heads refs/remotes"
 
+# list all local branches, sorted by most recent commit
+alias gbs="git for-each-ref --sort=-committerdate --format='%(committerdate:short) %(refname)' refs/heads"
+
 # Git rprompt
 # From http://blog.joshdick.net/2012/12/30/my_git_prompt_for_zsh.html
 # Adapted from code found at <https://gist.github.com/1712320>.
