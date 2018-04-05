@@ -34,9 +34,11 @@ let
 
   # the packages that we cherry-pick from the 'unstable' channel
   from-unstable = pkgs: {
-    cabal-install
-    ghc
-    ghcid
+    inherit (unstable)
+      cabal-install
+      ghc
+      ghcid
+    ;
   };
 
   # all of the package overrides
