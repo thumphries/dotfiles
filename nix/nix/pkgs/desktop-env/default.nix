@@ -6,6 +6,9 @@ pkgs.buildEnv {
   meta.priority = 10;
 
   paths = [
+    # nix
+    pkgs.nix-prefetch-scripts
+
     # git
     pkgs.gitAndTools.gitFull
     pkgs.gitAndTools.git-bz
@@ -22,5 +25,8 @@ pkgs.buildEnv {
 
     # emacs
     pkgs.emacs
+
+    # mosh
+    pkgs.mosh
   ];
 }
