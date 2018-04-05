@@ -10,6 +10,7 @@ let
   # packages defined locally that aren't in nixpkgs
   new-packages = pkgs: {
     # fullwidth = pkgs.callPackage ./pkgs/fullwidth { };
+    desktop-env = pkgs.callPackage ./pkgs/desktop-env { };
   };
 
   # slightly more convenient aliases for packages defined in nixpkgs
