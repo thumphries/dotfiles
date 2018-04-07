@@ -1,4 +1,4 @@
-{ stdenv, fetchgit, autoconf, automake,libX11 }:
+{ stdenv, fetchgit, autoconf, automake, libX11 }:
 stdenv.mkDerivation rec {
   name = "xrectsel";
 

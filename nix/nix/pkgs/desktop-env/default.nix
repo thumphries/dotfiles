@@ -28,5 +28,8 @@ pkgs.buildEnv {
 
     # mosh
     pkgs.mosh
+
+    # terminal
+    pkgs.termite
   ];
 }

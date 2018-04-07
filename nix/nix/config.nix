@@ -12,6 +12,7 @@ let
     desktop-env = pkgs.callPackage ./pkgs/desktop-env { };
     dwm = pkgs.callPackage ./pkgs/dwm { };
     xrectsel = pkgs.callPackage ./pkgs/xrectsel { };
+    xalternative = pkgs.callPackage ./pkgs/xalternative { };
   };
 
   # slightly more convenient aliases for packages defined in nixpkgs
