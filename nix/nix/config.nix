@@ -9,9 +9,11 @@ let
 
   # packages defined locally that aren't in nixpkgs
   new-packages = pkgs: {
+    shell-env = pkgs.callPackage ./pkgs/shell-env { };
     desktop-env = pkgs.callPackage ./pkgs/desktop-env { };
     dwm = pkgs.callPackage ./pkgs/dwm { };
     xrectsel = pkgs.callPackage ./pkgs/xrectsel { };
+    screenshot = pkgs.callPackage ./pkgs/screenshot { };
     xalternative = pkgs.callPackage ./pkgs/xalternative { };
   };
 
@@ -24,7 +26,7 @@ let
   haskell-apps = pkgs:
     let
       package-names = [
-        "pretty-show"
+        "xmobar"
       ];
       f = x: {
         name = x;

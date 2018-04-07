@@ -6,30 +6,22 @@ pkgs.buildEnv {
   meta.priority = 10;
 
   paths = [
-    # nix
-    pkgs.nix-prefetch-scripts
+    # shell
+    pkgs.shell-env
 
-    # git
-    pkgs.gitAndTools.gitFull
-    pkgs.gitAndTools.git-bz
-    pkgs.gitAndTools.git-extras
-    pkgs.gitAndTools.hub
-    pkgs.tig
+    # window manager
+    pkgs.xalternative
+    pkgs.xmobar
+    pkgs.compton-git
 
-    # search
-    pkgs.ripgrep
-    pkgs.silver-searcher
-
-    # aws
-    pkgs.awscli
-
-    # emacs
-    pkgs.emacs
-
-    # mosh
-    pkgs.mosh
+    # x11
+    pkgs.scrot
+    pkgs.screenshot
 
     # terminal
     pkgs.termite
+
+    # media
+    pkgs.feh
   ];
 }
