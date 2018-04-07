@@ -10,7 +10,10 @@ pkgs.buildEnv {
     pkgs.shell-env
 
     # window manager
+    pkgs.xinitrc
     pkgs.xalternative
+    pkgs.dmenu
+
     pkgs.xmobar
     pkgs.compton-git
 
@@ -19,6 +22,7 @@ pkgs.buildEnv {
     pkgs.screenshot
 
     # terminal
+    pkgs.rxvt_unicode-with-plugins
     pkgs.termite
 
     # media

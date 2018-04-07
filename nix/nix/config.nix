@@ -9,12 +9,13 @@ let
 
   # packages defined locally that aren't in nixpkgs
   new-packages = pkgs: {
-    shell-env = pkgs.callPackage ./pkgs/shell-env { };
     desktop-env = pkgs.callPackage ./pkgs/desktop-env { };
     dwm = pkgs.callPackage ./pkgs/dwm { };
-    xrectsel = pkgs.callPackage ./pkgs/xrectsel { };
     screenshot = pkgs.callPackage ./pkgs/screenshot { };
+    shell-env = pkgs.callPackage ./pkgs/shell-env { };
     xalternative = pkgs.callPackage ./pkgs/xalternative { };
+    xinitrc = pkgs.callPackage ./pkgs/xinitrc { };
+    xrectsel = pkgs.callPackage ./pkgs/xrectsel { };
   };
 
   # slightly more convenient aliases for packages defined in nixpkgs
