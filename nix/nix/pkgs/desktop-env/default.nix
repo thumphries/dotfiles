@@ -23,7 +23,7 @@ pkgs.buildEnv {
 
     # terminal
     pkgs.rxvt_unicode-with-plugins
-    pkgs.termite
+    pkgs.termite-config
 
     # media
     pkgs.feh

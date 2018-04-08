@@ -13,6 +13,7 @@ let
     dwm = pkgs.callPackage ./pkgs/dwm { };
     screenshot = pkgs.callPackage ./pkgs/screenshot { };
     shell-env = pkgs.callPackage ./pkgs/shell-env { };
+    termite-config = pkgs.callPackage ./pkgs/termite-config { };
     xalternative = pkgs.callPackage ./pkgs/xalternative { };
     xinitrc = pkgs.callPackage ./pkgs/xinitrc { };
     xrectsel = pkgs.callPackage ./pkgs/xrectsel { };
