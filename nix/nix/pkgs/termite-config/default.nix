@@ -12,7 +12,7 @@ let
     background = "#171717";
   };
 
-  cfg = config // defaultConfig;
+  cfg = defaultConfig // config;
 
   config-file = writeTextFile {
     name = "termite-conf";
@@ -26,6 +26,13 @@ let
       audible_bell = ${ bool cfg.audible-bell }
       scrollback_lines = ${ toString cfg.scrollback }
       clickable_url = ${ bool cfg.clickable-url }
+
+      [colors]
+      foreground = ${ cfg.foreground }
+      background = ${ cfg.background }
+
+      [hints]
+      font = ${ cfg.font-face } ${ toString cfg.font-size }
       foreground = ${ cfg.foreground }
       background = ${ cfg.background }
     '';

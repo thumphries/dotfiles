@@ -40,7 +40,7 @@ let
 
     # Fading
     fading = true;
-    fade-delta = 5;
+    fade-delta = 30;
     fade-in-step = 0.03;
     fade-out-step = 0.03;
     no-fading-openclose = false;
@@ -76,7 +76,7 @@ let
     xrender-sync-fence = false;
   };
 
-  cfg = config // defaultConfig;
+  cfg = defaultConfig //  config;
 
   config-file = writeTextFile {
     name = "compton-conf";
