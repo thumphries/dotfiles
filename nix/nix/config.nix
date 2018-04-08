@@ -16,8 +16,10 @@ let
     shell-env = pkgs.callPackage ./pkgs/shell-env { };
     termite-config = cfg : pkgs.callPackage ./pkgs/termite-config { config = cfg; };
     xalternative = pkgs.callPackage ./pkgs/xalternative { };
-    xinitrc = compton : pkgs.callPackage ./pkgs/xinitrc { compton = compton; };
+    xinitrc = compton : xsettings :
+      pkgs.callPackage ./pkgs/xinitrc { compton = compton; xsettingsd = xsettings; };
     xrectsel = pkgs.callPackage ./pkgs/xrectsel { };
+    xsettingsd-config = cfg : pkgs.callPackage ./pkgs/xsettingsd-config { config = cfg; };
   };
 
   # slightly more convenient aliases for packages defined in nixpkgs

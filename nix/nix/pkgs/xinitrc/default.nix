@@ -9,13 +9,17 @@ let
     # export GDK_SCALE
     ${setxkbmap}/bin/setxkbmap -option ctrl:nocaps
     ${xsettingsd}/bin/xsettingsd &
-    ${compton}/bin/compton &
+    ${compton}/bin/compton -b &
     ${xalternative}/bin/xalt
   '';
 in
   symlinkJoin rec {
     name = "xinitrc";
+
     paths = [ script ];
+
+    buildInputs = [ compton setxkbmap xalternative xsettingsd ];
+
     meta = {
       description = "X init script";
       license = stdenv.lib.licenses.bsd3;

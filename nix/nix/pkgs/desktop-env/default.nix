@@ -17,7 +17,10 @@ let
     fade-delta = 10;
   };
 
-  xinitrc = pkgs.xinitrc compton;
+  xsettingsd = pkgs.xsettingsd-config {
+  };
+
+  xinitrc = pkgs.xinitrc compton xsettingsd;
 in
   pkgs.buildEnv rec {
     name = "desktop-env";
