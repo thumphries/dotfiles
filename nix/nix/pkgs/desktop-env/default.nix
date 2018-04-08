@@ -10,6 +10,7 @@ let
     clickable-url = true;
     foreground = "#c0c0c0";
     background = "rgba(23, 23, 23, 0.95)";
+    #background = "#171717";
   };
 in
   pkgs.buildEnv {
