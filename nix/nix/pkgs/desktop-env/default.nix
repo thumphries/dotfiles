@@ -12,6 +12,10 @@ let
     background = "rgba(23, 23, 23, 0.95)";
     #background = "#171717";
   };
+
+  compton = pkgs.compton-config { };
+
+  xinitrc = pkgs.xinitrc compton;
 in
   pkgs.buildEnv {
     name = "desktop-env";
@@ -24,12 +28,11 @@ in
       pkgs.shell-env
 
       # window manager
-      pkgs.xinitrc
+      xinitrc
       pkgs.xalternative
       pkgs.dmenu
-
       pkgs.xmobar
-      pkgs.compton-git
+      compton
 
       # x11
       pkgs.scrot

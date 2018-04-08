@@ -9,13 +9,14 @@ let
 
   # packages defined locally that aren't in nixpkgs
   new-packages = pkgs: {
+    compton-config = cfg : pkgs.callPackage ./pkgs/compton-config { config = cfg; };
     desktop-env = pkgs.callPackage ./pkgs/desktop-env { };
     dwm = pkgs.callPackage ./pkgs/dwm { };
     screenshot = pkgs.callPackage ./pkgs/screenshot { };
     shell-env = pkgs.callPackage ./pkgs/shell-env { };
     termite-config = cfg : pkgs.callPackage ./pkgs/termite-config { config = cfg; };
     xalternative = pkgs.callPackage ./pkgs/xalternative { };
-    xinitrc = pkgs.callPackage ./pkgs/xinitrc { };
+    xinitrc = compton : pkgs.callPackage ./pkgs/xinitrc { compton = compton; };
     xrectsel = pkgs.callPackage ./pkgs/xrectsel { };
   };
 

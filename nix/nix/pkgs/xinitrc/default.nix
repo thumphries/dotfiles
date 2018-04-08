@@ -1,5 +1,5 @@
 { stdenv, symlinkJoin, writeShellScriptBin
-, compton-git, setxkbmap, xalternative, xsettingsd }:
+, compton, setxkbmap, xalternative, xsettingsd }:
 let
   script = writeShellScriptBin "xinitrc" ''
     set -euo pipefail
@@ -9,7 +9,7 @@ let
     # export GDK_SCALE
     ${setxkbmap}/bin/setxkbmap -option ctrl:nocaps
     ${xsettingsd}/bin/xsettingsd &
-    ${compton-git}/bin/compton &
+    ${compton}/bin/compton &
     ${xalternative}/bin/xalt
   '';
 in
