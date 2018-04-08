@@ -1,5 +1,5 @@
 { stdenv, symlinkJoin, writeShellScriptBin
-, compton, setxkbmap, xalternative, xsettingsd }:
+, compton, setxkbmap, xalternative, xsetroot, xsettingsd }:
 let
   script = writeShellScriptBin "xinitrc" ''
     set -euo pipefail
@@ -7,6 +7,7 @@ let
     # export QT_AUTO_SCREEN_SCALE_FACTOR
     # GDK_SCALE=2
     # export GDK_SCALE
+    ${xsetroot}/bin/xsetroot -cursor_name left_ptr
     ${setxkbmap}/bin/setxkbmap -option ctrl:nocaps
     ${xsettingsd}/bin/xsettingsd &
     ${compton}/bin/compton -b &
