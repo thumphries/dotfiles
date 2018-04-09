@@ -11,7 +11,8 @@ let
     ${setxkbmap}/bin/setxkbmap -option ctrl:nocaps
     ${xsettingsd}/bin/xsettingsd &
     ${compton}/bin/compton -b &
-    ${xalternative}/bin/xalt
+    #${xalternative}/bin/xalt
+    xalt
   '';
 in
   symlinkJoin rec {
