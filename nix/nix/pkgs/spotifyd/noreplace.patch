@@ -1,0 +1,26 @@
+diff --git a/Cargo.lock b/Cargo.lock
+index c8fdb41..9d69b08 100644
+--- a/Cargo.lock
++++ b/Cargo.lock
+@@ -1245,7 +1245,6 @@ dependencies = [
+ name = "rust-crypto"
+ version = "0.2.36"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+-replace = "rust-crypto 0.2.36 (git+https://github.com/awmath/rust-crypto.git?branch=avx2)"
+ 
+ [[package]]
+ name = "rust-ini"
+diff --git a/Cargo.toml b/Cargo.toml
+index 7651b24..c521aa9 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -24,9 +24,6 @@ dbus-tokio = { version = "0.2", optional = true }
+ rspotify = "0.1.2"
+ chrono = "0.4"
+ 
+-[replace]
+-"rust-crypto:0.2.36" = { git = "https://github.com/awmath/rust-crypto.git", branch = "avx2" }
+-
+ [dependencies.librespot]
+ git = "https://github.com/librespot-org/librespot.git"
+ default-features = false

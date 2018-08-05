@@ -14,6 +14,7 @@ let
     dwm = pkgs.callPackage ./pkgs/dwm { };
     screenshot = pkgs.callPackage ./pkgs/screenshot { };
     shell-env = pkgs.callPackage ./pkgs/shell-env { };
+    spotifyd = pkgs.callPackage ./pkgs/spotifyd { };
     termite-config = cfg : pkgs.callPackage ./pkgs/termite-config { config = cfg; };
     xalternative = pkgs.callPackage ./pkgs/xalternative { };
     xinitrc = compton : xsettings :
@@ -31,6 +32,8 @@ let
   haskell-apps = pkgs:
     let
       package-names = [
+        "dhall"
+        "dhall-nix"
         "xmobar"
       ];
       f = x: {
@@ -45,7 +48,6 @@ let
   # the packages that we cherry-pick from the 'unstable' channel
   from-unstable = pkgs: {
     inherit (unstable)
-      cabal-install
       ghc
       ghcid
     ;
