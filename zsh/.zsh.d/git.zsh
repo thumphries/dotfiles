@@ -16,8 +16,13 @@ alias gcom="git checkout origin/master"
 # rebase origin/master
 alias grom="git rebase origin/master"
 
+# print root of working tree
+git-root() {
+  git rev-parse --show-toplevel
+}
+
 # cd to root of working tree
-alias r='cd $(git rev-parse --show-toplevel)'
+alias r='cd $(git-root)'
 
 # prune all merged branches
 alias prune-merged-branches="git branch --merged | grep -e "topic/" | xargs git branch -d"
@@ -48,6 +53,22 @@ alias gb="git for-each-ref --sort=-committerdate --format='%(committerdate:short
 
 # list all local branches, sorted by most recent commit
 alias gbs="git for-each-ref --sort=-committerdate --format='%(committerdate:short) %(refname)' refs/heads"
+
+# remove a submodule
+git-remove-submodule() {
+  if [ -z "$1" ]; then
+    echo "USAGE: git-remove-submodule path/to/submodule"
+    echo "Available submodules:"
+    git submodule
+    return 1
+  fi
+  set +eux
+  GIT_ROOT=$(git-root)
+  git submodule deinit -f -- "$1"
+  rm -rf "${GIT_ROOT}/.git/modules/$1"
+  git rm -f "$1"
+  echo "Removed submodule $1"
+}
 
 # Git rprompt
 # From http://blog.joshdick.net/2012/12/30/my_git_prompt_for_zsh.html
