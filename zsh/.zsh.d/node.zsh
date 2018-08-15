@@ -17,7 +17,7 @@ node-switch() {
   fi
 
 
-  VER_PATH="$NODEDIR/node-$1"
+  VER_PATH="$NODEDIR/node-$1/bin"
   if [ -d "$VER_PATH" ]; then
     if [ -z "$NODE_VERSION" ]
       then export PATH=$VER_PATH:$PATH
