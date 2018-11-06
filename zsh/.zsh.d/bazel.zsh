@@ -7,17 +7,31 @@ git-root() {
   git rev-parse --show-toplevel
 }
 
+
+# access bazel-repl script from anywhere in the repo
+alias br='$(git-root)/scripts/bazel/repl'
+
 # bazel repl with target selection
 brz() {
   t=$(select-target "$1")
   br "$t"
 }
 
-# access bazel-repl script from anywhere in the repo
-alias br='$(git-root)/scripts/bazel/repl'
+brr() {
+  t=$(select-target "$1")
+  bazel run "$t"
+}
 
 # run tests with visible errors
 alias bt='bazel test --test_output=errors'
 
+# build the thing
+alias bb='bazel build'
+
 # build all the things
-alias bbb='bazel build ...'
+alias bbb='bb ...'
+
+bbz() {
+  t=$(select-target "$1")
+  bb "$t"
+}
