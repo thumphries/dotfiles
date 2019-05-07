@@ -31,7 +31,7 @@ alias prune-merged-branches="git branch --merged | grep -e "topic/" | xargs git 
 alias gss="git submodule sync && git submodule update"
 
 # fetch origin
-alias gfo="git fetch origin"
+alias gfo="git fetch origin --prune"
 
 # fast-forward to remote HEAD
 alias gff='git merge --ff-only $(git for-each-ref --format="%(upstream:short)" $(git symbolic-ref -q HEAD))'
