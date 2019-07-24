@@ -70,6 +70,32 @@ git-remove-submodule() {
   echo "Removed submodule $1"
 }
 
+# fuzzy finders
+switch-branch() {
+  S_BRANCH=$(git for-each-ref --sort=-committerdate --format="%(refname)" refs/heads | fzf --preview="git log {}")
+  if [ ! -z "S_BRANCH" ]; then
+    R_BRANCH=$(echo $S_BRANCH | sed -e 's@refs/heads/@@')
+    if [ ! -z "$R_BRANCH" ]; then
+      git checkout $R_BRANCH
+#      print -z "git checkout $R_BRANCH"
+    fi
+  fi
+}
+
+switch-branch-remote() {
+  S_BRANCH=$(git for-each-ref --sort=-committerdate --format="%(refname)" refs/remotes | fzf --preview="git log {}")
+  if [ ! -z "S_BRANCH" ]; then
+    R_BRANCH=$(echo $S_BRANCH | sed -e 's@refs/remotes/origin/@@')
+    if [ ! -z "$R_BRANCH" ]; then
+      git checkout $R_BRANCH
+#      print -z "git checkout $R_BRANCH"
+    fi
+  fi
+}
+
+alias gs="switch-branch"
+alias gsr="switch-branch-remote"
+
 # Git rprompt
 # From http://blog.joshdick.net/2012/12/30/my_git_prompt_for_zsh.html
 # Adapted from code found at <https://gist.github.com/1712320>.
