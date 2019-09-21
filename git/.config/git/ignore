@@ -12,6 +12,7 @@ auto-save-list
 tramp
 .\#*
 .*\#
+.lsp-session*
 
 # Haskell #
 ###########
