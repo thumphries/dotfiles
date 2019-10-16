@@ -23,6 +23,21 @@ key[PageDown]=${terminfo[knp]}
 [[ -n "${key[Down]}"    ]]  && bindkey  "${key[Down]}"    down-line-or-history
 [[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
 [[ -n "${key[Right]}"   ]]  && bindkey  "${key[Right]}"   forward-char
+
+# ctrl arrow combos for various terminal emulators
+
+## rxvt family
+bindkey "^[Od" backward-word
+bindkey "^[Oc" forward-word
+
+## xterm family
+bindkey "^[[1;5D" backward-word
+bindkey "^[[1;5C" forward-word
+
+## mystery forum post detritus
+#bindkey ";5C" forward-word
+#bindkey ";5D" backward-word
+
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
 
