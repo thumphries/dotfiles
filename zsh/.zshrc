@@ -11,6 +11,8 @@ if [ -e $HOME/.zshrc.local ]; then source $HOME/.zshrc.local; fi
 # Set useful global options
 REPORTTIME=10
 
+# allow comments in interactive mode
+setopt interactivecomments
 
 # FIX get the rest of this crap into appropriate files / get rid of em
 export MUSIC_DIR="/Volumes/Music/"
