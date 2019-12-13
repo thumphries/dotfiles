@@ -8,5 +8,10 @@ compinit
 
 setopt prompt_subst
 
-PROMPT="[%{$fg[black]%}%n@%M:%{$fg[white]%}%~%{$reset_color%}] %# "
-RPROMPT=""
+# Show exit code by coloring the prompt sigil
+SIGIL_CHAR=">"
+SIGIL_OK='%{$fg[white]%}'${SIGIL_CHAR}'%{$reset_color%}'
+SIGIL_KO='%{$fg[red]%}'${SIGIL_CHAR}'%{$reset_color%}'
+PROMPT_SIGIL="%(?.$SIGIL_OK.$SIGIL_KO)"
+
+PROMPT="[%{$fg[black]%}%n@%M:%{$fg[white]%}%~%{$reset_color%}] $PROMPT_SIGIL "
