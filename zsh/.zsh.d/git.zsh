@@ -22,7 +22,7 @@ git-root() {
 }
 
 # cd to root of working tree
-alias r='cd $(git-root)'
+alias r='if is-git-repo; then cd $(git-root); else cd $HOME; fi'
 
 # prune all merged branches
 alias prune-merged-branches="git branch --merged | grep -e "topic/" | xargs git branch -d"
@@ -54,6 +54,11 @@ alias gb="git for-each-ref --sort=-committerdate --format='%(committerdate:short
 # list all local branches, sorted by most recent commit
 alias gbs="git for-each-ref --sort=-committerdate --format='%(committerdate:short) %(refname)' refs/heads"
 
+# test if inside git repo
+is-git-repo() {
+  git rev-parse --is-inside-work-tree &> /dev/null
+}
+
 # remove a submodule
 git-remove-submodule() {
   if [ -z "$1" ]; then
@@ -72,6 +77,10 @@ git-remove-submodule() {
 
 # fuzzy finders
 switch-branch() {
+  if ! is-git-repo; then
+    echo "Not in a git worktree"
+    exit 1
+  fi
   S_BRANCH=$(git for-each-ref --sort=-committerdate --format="%(refname)" refs/heads | fzf --preview="git log {}")
   if [ ! -z "S_BRANCH" ]; then
     R_BRANCH=$(echo $S_BRANCH | sed -e 's@refs/heads/@@')
@@ -83,6 +92,10 @@ switch-branch() {
 }
 
 switch-branch-remote() {
+  if ! is-git-repo; then
+    echo "Not in a git worktree"
+    exit 1
+  fi
   S_BRANCH=$(git for-each-ref --sort=-committerdate --format="%(refname)" refs/remotes | fzf --preview="git log {}")
   if [ ! -z "S_BRANCH" ]; then
     R_BRANCH=$(echo $S_BRANCH | sed -e 's@refs/remotes/origin/@@')
