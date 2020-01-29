@@ -109,6 +109,16 @@ switch-branch-remote() {
 alias gs="switch-branch"
 alias gsr="switch-branch-remote"
 
+git-list-big-blobs () {
+  # https://stackoverflow.com/a/42544963
+  git rev-list --objects --all \
+    | git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' \
+    | sed -n 's/^blob //p' \
+    | sort --numeric-sort --key=2 \
+    | cut -c 1-12,41- \
+    | $(command -v gnumfmt || echo numfmt) --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest
+}
+
 # Git rprompt
 # From http://blog.joshdick.net/2012/12/30/my_git_prompt_for_zsh.html
 # Adapted from code found at <https://gist.github.com/1712320>.
