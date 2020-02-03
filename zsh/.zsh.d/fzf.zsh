@@ -100,7 +100,7 @@ bindkey '^p' switch-branch
 
 # CTRL-P - switch to remote branch
 zle -N switch-branch-remote
-bindkey '^P' switch-branch-remote
+bindkey '^q' switch-branch-remote
 
 fi
 
