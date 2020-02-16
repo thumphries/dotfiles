@@ -1,0 +1,5 @@
+templates:
+  params: null
+system-ghc: true
+nix:
+  enable: true
