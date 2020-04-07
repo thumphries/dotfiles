@@ -15,7 +15,6 @@ SIGIL_KO='%{$fg[red]%}'${SIGIL_CHAR}'%{$reset_color%}'
 PROMPT_SIGIL="%(?.$SIGIL_OK.$SIGIL_KO)"
 
 # Truncate if long. Note the hardquotes
-PROMPT_MAX='$(($COLUMNS / 2))' # hard truncate
 PROMPT_THRESHOLD=120 # preemptively truncate here
 USER_MAX=12
 
@@ -47,4 +46,4 @@ function prompt_cwd() {
 }
 PROMPT_CWD='$(prompt_cwd)'
 
-PROMPT="%${PROMPT_MAX}<...<[%{$fg[black]%}${PROMPT_USER_HOST}:%{$fg[white]%}${PROMPT_CWD}%{$reset_color%}] $PROMPT_SIGIL "
+PROMPT="[%{$fg[black]%}${PROMPT_USER_HOST}:%{$fg[white]%}${PROMPT_CWD}%{$reset_color%}] $PROMPT_SIGIL "
