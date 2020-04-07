@@ -14,4 +14,37 @@ SIGIL_OK='%{$fg[white]%}'${SIGIL_CHAR}'%{$reset_color%}'
 SIGIL_KO='%{$fg[red]%}'${SIGIL_CHAR}'%{$reset_color%}'
 PROMPT_SIGIL="%(?.$SIGIL_OK.$SIGIL_KO)"
 
-PROMPT="[%{$fg[black]%}%n@%M:%{$fg[white]%}%~%{$reset_color%}] $PROMPT_SIGIL "
+# Truncate if long. Note the hardquotes
+PROMPT_MAX='$(($COLUMNS / 2))' # hard truncate
+PROMPT_THRESHOLD=120 # preemptively truncate here
+USER_MAX=12
+
+function prompt_short_user() {
+  U=$(whoami | cut -c1)
+  H=$(hostname | cut -c1)
+  echo "${U}@${H}"
+}
+
+function prompt_user_host() {
+  if [ "$COLUMNS" -lt "$PROMPT_THRESHOLD" ]; then
+    prompt_short_user
+  else
+    echo "%n@%M"
+  fi
+}
+PROMPT_USER_HOST='$(prompt_user_host)'
+
+function prompt_cwd() {
+  if [ "$COLUMNS" -lt "50" ]; then
+    echo "%1~"
+  elif [ "$COLUMNS" -lt "78" ]; then
+    echo "%3~"
+  elif [ "$COLUMNS" -lt "$PROMPT_THRESHOLD" ]; then
+    echo "%5~"
+  else
+    echo "%~"
+  fi
+}
+PROMPT_CWD='$(prompt_cwd)'
+
+PROMPT="%${PROMPT_MAX}<...<[%{$fg[black]%}${PROMPT_USER_HOST}:%{$fg[white]%}${PROMPT_CWD}%{$reset_color%}] $PROMPT_SIGIL "
