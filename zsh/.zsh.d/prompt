@@ -36,10 +36,8 @@ PROMPT_USER_HOST='$(prompt_user_host)'
 function prompt_cwd() {
   if [ "$COLUMNS" -lt "50" ]; then
     echo "%1~"
-  elif [ "$COLUMNS" -lt "78" ]; then
-    echo "%3~"
   elif [ "$COLUMNS" -lt "$PROMPT_THRESHOLD" ]; then
-    echo "%5~"
+    echo "%3~"
   else
     echo "%~"
   fi
