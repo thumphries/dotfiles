@@ -16,6 +16,12 @@ alias gcom="git checkout origin/master"
 # rebase origin/master
 alias grom="git rebase origin/master"
 
+# checkout origin/trunk
+alias gcot="git checkout origin/trunk"
+
+# rebase origin/trunk
+alias grot="git rebase origin/trunk"
+
 # print root of working tree
 git-root() {
   git rev-parse --show-toplevel
